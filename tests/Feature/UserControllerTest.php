@@ -14,6 +14,13 @@ class UserControllerTest extends TestCase
             ->assertSeeText('Login');
     }
 
+    public function testLoginPageForMember()
+    {
+        $this->withSession([
+            'username' => 'jonathan'
+        ])->get('/login')->assertRedirect('/');
+    }
+
     public function testLoginSuccess()
     {
         $this->post('/login', [
